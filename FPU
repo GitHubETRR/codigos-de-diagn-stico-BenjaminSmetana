@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main()
+{
+	union
+	{
+		float num;
+		unsigned char pos[4];
+	}var;
+
+	var.num=-15;
+	printf("0x%x", var.pos[3]);
+	printf("%x", var.pos[2]);
+	printf("%x", var.pos[1]);
+	printf("%x", var.pos[0]);
+
+	return 0;
+}
