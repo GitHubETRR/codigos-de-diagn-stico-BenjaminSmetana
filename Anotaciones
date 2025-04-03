@@ -1,0 +1,76 @@
+Al final del codigo hay que liberar la memoria dinámica si o si. Si no s ehace no pasa nada pero es una mala práctica.
+Next va dentro de la estructura. (Puntero para pasar de una a otra)
+malloc prototipo (función para pedir memoria) = void *malloc(size_t size)
+Hay que agregar biblioteca
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    
+    int *p=malloc(sizeof(int)); //para que me devuelva un entero
+    return 0;
+}
+
+
+Agrego int * (puntero) tengo que poner entre parentesis a que tipo de puntero quiero que se adapte. Como int puede ser char, float, etc..
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    
+    int *p= (int *)malloc(sizeof(int)); //para que me devuelva un entero
+    return 0;
+}
+
+Por si no hay memoria.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    
+    int *p= (int *)malloc(sizeof(int)); //para que me devuelva un entero
+    if(p==NULL){
+        printf("Me quedé sin memoria\n");
+        exit(0);
+    }else{
+        
+        
+    }
+   
+   
+    return 0;
+}
+
+Le doy un valor al puntero y pongo free(p); porque tengo que liberar el puntero
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    
+    int *p= (int *)malloc(sizeof(int)); //para que me devuelva un entero
+    if(p==NULL){
+        printf("Me quedé sin memoria\n");
+        exit(0);
+    }else{
+        *p=54;
+        printf("El contenido de P es %d",*p);
+        free(p);
+        
+    }
+   
+   
+    return 0;
+}
+
+SUPONGAMOS QUE TENEMOS QUE PEDIR 5 ENTEROS.
+LO MÁS FACIL ES PONER: p=(int *) malloc 5*(sizeof(int)); y multiplico esos enteros que pido.
+Pero hay una función que es calloc que es: p(int *) calloc(sizeof(int),5);
+
+getchar pide un caracter al teclado
+
