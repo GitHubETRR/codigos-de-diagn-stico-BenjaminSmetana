@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std; //Incluyo biblioteca
+
+class menuComedor { //defino una clase llamada menucomedor, que va a ser el menu
+private:
+    string nombre_estudiante; //defino variables privadas para almacenar
+    int grado;//el nombre y el grado del estudiante, en este caso soy yo
+
+public: //ahora publico
+    void bienvenida(string nombre, int g) { //recibe nombre y grado del estudiante
+        nombre_estudiante = nombre; 
+        grado = g;
+        cout << "Bienvenido al comedor " << nombre << " de " << g << "° grado" << endl;
+    } //los dice en un saludo personalizado para recibirlos al programa
+
+    void seleccionarPostre(const string& comida) {
+        int opcion_postre; //función para seleccionar un postre de las opciones que puse
+        string postres[] = {"Helado", "Gelatina", "Fruta", "Brownie"};
+        
+        cout << "\n---Postres---" << endl;
+        for (int i = 0; i < 4; i++) { //para mostrar los postres enumerados
+            cout << i + 1 << "-" << postres[i] << endl;
+        }
+        cout << "5-Sin postre" << endl; //la opcion de sin postre
+        
+        cin >> opcion_postre; //para leer la opcion del usuario
+        if (opcion_postre >= 1 && opcion_postre <= 4) {
+            cout << "Menu: " << comida << " + " << postres[opcion_postre - 1] << endl; //con postre
+        } else {
+            cout << "Menu: " << comida << endl; // sin postre
+        }
+    }
+
+    void elegirOpcionCeliaco() { //menu para celiacos
+        cout << "\n---Menu para celiacos---" << endl;
+        cout << "Pollo a la plancha (sin TACC)" << endl; //muestra la unica opcion disponible  para despues pasar a elegir el postre
+        seleccionarPostre("Pollo a la plancha (sin TACC)");
+    }
+
+    void elegirPreparacionMilanesa() { //funcion para elegir milanesa frita o al horno
+        int opcion;
+        cout << "\n---Tipo de milanesa---" << endl;
+        cout << "1-Milanesa al horno con pure" << endl;
+        cout << "2-Milanesa frita con pure" << endl;
+        cin >> opcion;
+        
+        if (opcion == 1) {
+            seleccionarPostre("Milanesa de pollo al horno con pure"); 
+        } else if (opcion == 2) {
+            seleccionarPostre("Milanesa de pollo frita con pure");
+        } else {
+            cout << "Opcion no valida" << endl; 
+        }
+    }
+
+    void opcionesPrincipales() {
+        int opcion;
+        cout << "\n---Menu del Dia---" << endl;
+        cout << "1-Milanesa de pollo con pure" << endl; //el menu principal
+        cout << "2-Opcion para celiacos" << endl;
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                elegirPreparacionMilanesa();
+                break;
+            case 2:
+                elegirOpcionCeliaco();
+                break;
+            default:
+                cout << "Opcion no valida" << endl;
+                break;
+        }
+    }
+};
+
+int main() {
+    menuComedor comedor;
+    comedor.bienvenida("Benjamin", 6); //un ejemplo de usuario, que me puse a mi.
+    comedor.opcionesPrincipales();
+    return 0; //fin
+} //NOTA PARA ISI: No llegue a poner si elegir milanesa con o sin puré, ya me dolia la cabeza
